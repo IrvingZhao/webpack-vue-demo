@@ -11,8 +11,8 @@ module.exports = {
     //输出配置
     output: {
         path: path.resolve(__dirname, 'dist/'),//输出目录  __dirname 为 项目当前目录
-        filename: '[name].js?[chunkhash]', // 输出文件名  name代表  entry中的 name值
-        chunkFilename: 'chunk/[name].js?[chunkhash]',// 模块的文件打包名以及加载请求地址，chunkhash 文件hash
+        filename: '[name].js', // 输出文件名  name代表  entry中的 name值
+        chunkFilename: 'chunk/[name].[chunkhash].js',// 模块的文件打包名以及加载请求地址，chunkhash 文件hash
         publicPath: "/dist/" //动态加载文件时的上下文，会添加到文件地址前，可根据需求具体修改
     },
 

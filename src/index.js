@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 // 引入 页面定义 脚本
 import Pages from "./pages";
 
-const appComponent = Pages["app"];
+const appComponent = Pages.getPage("core/app");
 
 // 简单组件
 const Foo = {template: '<div>foo</div>'};
