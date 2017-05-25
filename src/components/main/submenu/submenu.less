@@ -1,0 +1,35 @@
+.menu-content {
+  ul {
+    //padding-left: 20px;
+    height:0;
+    margin:2px 0;
+  }
+  li {
+    height: auto;
+    line-height: 40px;
+    overflow: hidden;
+    transition: height .5s;
+    margin:2px 0;
+  }
+  .menu-drop {
+    float: right;
+    line-height: 40px;
+    margin-right: 5px;
+  }
+  .menu-title {
+    color: #ddd;
+    cursor: pointer;
+    &.open{
+      color: #ffffff;
+      background: #12618f;
+    }
+    &:hover {
+      color: #fff;
+      background: darken(#12618f,10%);
+    }
+  }
+}
+
+.side-menu > .menu-content > li > .menu-title {
+  border-top: 1px solid #1c95dc;
+}

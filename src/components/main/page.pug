@@ -1,0 +1,16 @@
+main
+    .left-side
+        .side-menu
+            custom-sub-menu(:menus="menus",:level=0,@openPage="openPage")
+            //TODO 页面打开  关闭  放在main中
+            //Menu(active-name="1-2",theme='primary',width="100%",:open-names="['1']")
+            //    template(v-for="itemMenu in menus")
+            //        template(v-if="itemMenu.children")
+            //            custom-sub-menu(:item-menu="itemMenu")
+            //        template(v-else)
+            //            Menu-item(:name="itemMenu.id")
+            //                Icon(v-bind:type="itemMenu.icon")
+            //                span {{itemMenu.name}}
+            //                //TODO 菜单节点变更   添加 各种事件
+    .main-content#main-content
+        menu-page

@@ -1,0 +1,8 @@
+header
+    Row(type="flex",justify="end")
+        Col(span=12,class="icon")
+            img(src="")
+        Col(span=12,class="link_group")
+            span.username superadmin
+            span.button(v-on:click="modifyPassword") 修改密码
+            span.button(v-on:click="quit") 退出

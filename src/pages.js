@@ -1,3 +1,5 @@
+'use strict';
+
 import core from "./modules/core/pages";
 
 let pages = {
@@ -22,6 +24,6 @@ const getPage = (name) => {
     return result;
 };
 
-export default {
+module.exports = {
     getPage
 }

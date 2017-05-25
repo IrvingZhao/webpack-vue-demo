@@ -2,10 +2,13 @@ const path = require("path");// 路径工具
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // .vue 文件中的文本提取插件
 const CopyWebpackPlugin = require("copy-webpack-plugin");//文件拷贝插件
 
-
 module.exports = {
     entry: {
-        index: "./src/index.js"//首页入口
+        index: [
+            "./src/index.js",
+            'file-loader?name=index.html!pug-html-loader!./src/index.pug',
+            'file-loader?name=iview.css!less-loader!./src/iview.less'
+        ]//首页入口
     },
 
     //输出配置
@@ -49,6 +52,14 @@ module.exports = {
                         plugins: ['transform-runtime']
                     }
                 }
+            },
+            {
+                test: /\.pug$/,
+                loader: 'pug-html-loader'
+            },
+            {
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader?limit=1024'
             }
             // ,
             // {
@@ -58,12 +69,6 @@ module.exports = {
             //         loader: "html-loader"
             //     }
             // },
-            // {
-            //     //css 加载器
-            //     test: /\.css$/,
-            //     exclude: /(themes)/,
-            //     loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})
-            // }
         ]
     },
     resolve: {
@@ -71,10 +76,10 @@ module.exports = {
             // require中 使用的  别名
             Components: path.resolve(__dirname, "src/components/"),
             Pages: path.resolve(__dirname, "src/pages"),
-            Themes: path.resolve(__dirname, "src/themes")
+            vue: 'vue/dist/vue.min.js'
         },
         // require中 自动追加的后缀名  * 用来 全名时匹配，替代 webpack 1.0 中的 空字符串
-        extensions: ["*", ".js", ".vue"]
+        extensions: ["*", ".vue", ".js"]
     },
     plugins: [
         //css 加载
@@ -82,9 +87,10 @@ module.exports = {
         // new TransferWebpackPlugin([{from: "src/plugin", to: "plugin"}, {from: "src/theme", to: "theme"}]),
         //文件拷贝
         new CopyWebpackPlugin([
-            // {from: "src/plugin", to: "plugin"},
-            // {from: "src/theme", to: "theme"},
-            {from: "src/index.html", to: "index.html"}
+            {from: "src/plugin", to: "plugin"},
+            {from: "src/resources", to: "resources"}
+            // {from: "src/theme", to: "theme"}
+            // {from: "src/index.html", to: "index.html"}
         ])
     ]
 };
