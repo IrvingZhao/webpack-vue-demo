@@ -1,41 +1,61 @@
-let Vue = require("vue");
-let ScrollEvent = require("../DomScroll");
-let PageUtil=require("../../pages");
-let jQuery = require.ensure([], () => require("jquery"), "jquery");
-jQuery.then($ => {
-    let siteMenu = $(".side-menu");
-    ScrollEvent.addMouseWheelEvent(siteMenu[0]);
-});
-// let $ = (r => require.ensure([], () => r(require('jquery')), "jquery"))(function(param){return param;});
-// console.info($);
-// let $=require("jquery");
-// console.info($);
-// let $=()=>{
-//     let jQuery=1;
-// require.ensure([],()=>jQuery=require("jquery"),"jquery");
-// (r => require.ensure([], () => r(require('jquery')), "jquery"))(function(param){console.info(jQuery);jQuery=param;console.info(jQuery)});
-//     return jQuery;
-// };
+import Vue from "vue";
+import ScrollEvent from "../DomScroll";
+import PageUtils from "../../pages";
+import Router from "vue-router";
+
 let subMenu = require("./submenu/submenu.vue");
-// console.info($);
+let timeInterval;
 export default{
-    methods:{
-        openPage(menu){
-            let page=PageUtil.getPage("core/app");
-            new Vue({
-                el:"#main-content",
-                components:{
-                    "menu-page":page
-                }
-            })
-        }
+    mounted(){
+        ScrollEvent.addMouseWheelEvent(document.getElementsByClassName("side-menu")[0]);
     },
     components: {
         "custom-sub-menu": subMenu
     },
+    methods: {
+        openPage(menu){
+            let router=PageUtils.getRouter();
+            router.push("/core/app");
+            // Router.push("/core/app");
+            console.info(router);
+            // let page = PageUtil.getPage("core/app");
+            // let pageId = "page_" + Date.now();
+            // let pageData = {name: pageId, label: "tab" + pageId, component:PageUtil.getPage("core/app")};
+            // this.tabs.push(pageData);
+            //
+            // this.tabActiveName = pageData.pageId;
+            // let pageVue = new Vue({
+            //     components: {
+            //         "tab-page": page
+            //     }
+            // });
+            // pageData.vueObj = pageVue;
+            // timeInterval = setInterval(() => {
+            //     if (document.getElementById(pageId)) {
+            //         clearInterval(timeInterval);
+            //         pageVue.$mount(document.getElementById(pageId));
+            //     }
+            // }, 10);
+        },
+        handleTabRemove(pageName){
+            // this.tabs[pageName].vueObj.$destroy();
+            // delete this.tabs[pageName];
+            // console.info(this);
+            // let obj = this.tabs.splice(index, 1);
+            // obj[0].vueObj.$destroy();
+            // console.info(obj);
+            // console.info(obj.vueObj)
+            //TODO  tabs.remove
+            //TODO  tab.value=name
+            //TODO   tab.Vue.destory
+            // console.info(this);
+            // console.info(arguments);
+        }
+    },
     data (){
         return {
-            name: "123123",
+            tabActiveName: "0",
+            tabs: [],
             menus: [
                 {id: "a", active: false, name: "菜单1", url: "/pages/common/page.html", icon: "sa-side-home"},
                 {

@@ -1,29 +1,31 @@
 'use strict';
 
 import core from "./modules/core/pages";
+import VueRouter from "vue-router";
 
-let pages = {
-    core
-};
-/**
- * 根据名称加载页面
- * @param name 页面名称  采用  模块名/页面名 的形式
- * */
-const getPage = (name) => {
-    let paths = name.split("/");
-    let result = pages;
-    paths.forEach((item) => {
-        if (result == null) {
-            return;
-        }
-        result = result[item];
-    });
-    if (result == pages) {
-        return null;
+let routes = [
+    {
+        path: "/core",
+        children: core,
+        component: require("./modules/page.vue")
     }
-    return result;
+];
+let router;
+/**
+ * 获取路由
+ * */
+const getRouter = () => {
+    if (!router) {
+        router = new VueRouter({
+            routes: routes
+        });
+        router.beforeEach((to,from,next)=>{
+            //TODO 401 校验
+            next();
+        });
+    }
+    return router;
 };
-
-module.exports = {
-    getPage
+export default {
+    getRouter
 }

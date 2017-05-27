@@ -2,5 +2,5 @@
 </template>
 <script lang="es6" src="./page.js">
 </script>
-<style lang="less" src="./page.less" scoped>
+<style lang="less" src="./page.less">
 </style>

@@ -13,23 +13,22 @@ function compactEvent(event) {
     return event;
 }
 function eventCallback(callback) {
-    return function(e) {
+    return function (e) {
         let event = compactEvent(e || window.event);
         if (event.delta > 0) {
             // this.scroll
-            this.scrollTop=this.scrollTop-20;
+            this.scrollTop = this.scrollTop - 20;
             console.info("scroll--");
         } else if (event.delta < 0) {
             console.info("scroll++");
-            this.scrollTop=this.scrollTop+20;
+            this.scrollTop = this.scrollTop + 20;
         }
         if (callback) {
             callback.call(this, compactEvent(event));
         }
     }
 }
-
-module.exports = {
+export default {
     addMouseWheelEvent(el, callback, useCapture){
         registerEvent.call(el, type, eventCallback(callback), useCapture);
     }

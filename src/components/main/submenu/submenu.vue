@@ -20,9 +20,7 @@
 
 </style>
 <script lang="es6">
-    //TODO  修改菜单激活样式
-    //TODO  修改菜单悬停样式
-    //TODO   修改菜单展开样式
+
     let submenu = require("./submenu.vue");
     let Velocity = require("velocity-animate");
     let currentItemMenu;

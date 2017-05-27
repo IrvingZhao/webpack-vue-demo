@@ -76,7 +76,8 @@ module.exports = {
             // require中 使用的  别名
             Components: path.resolve(__dirname, "src/components/"),
             Pages: path.resolve(__dirname, "src/pages"),
-            vue: 'vue/dist/vue.min.js'
+            vue: 'vue/dist/vue.min.js',
+            node_modules:path.resolve(__dirname,"node_modules")
         },
         // require中 自动追加的后缀名  * 用来 全名时匹配，替代 webpack 1.0 中的 空字符串
         extensions: ["*", ".vue", ".js"]

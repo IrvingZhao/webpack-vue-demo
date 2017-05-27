@@ -12,5 +12,12 @@ main
             //                Icon(v-bind:type="itemMenu.icon")
             //                span {{itemMenu.name}}
             //                //TODO 菜单节点变更   添加 各种事件
-    .main-content#main-content
-        menu-page
+    .main-content
+        router-view
+        //template
+        //    Tabs(type="card",closable,@on-tab-remove="handleTabRemove",:value="tabActiveName",:pages="tabs")
+                //template(v-for="tab in tabs")
+                //    Tab-pane(:name="tab.pageId",:label="tab.label",closable="true",:pageName="tab.pageName")
+                //        core-app
+                        //div(:id="tab.pageId")
+                        //    tab-page
