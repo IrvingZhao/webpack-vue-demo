@@ -1,3 +1,5 @@
-div
-    h1 姓名：{{name}}
-    h2 {{age}}
+data-grid(name="grid")
+    span(slot="toolbar") 工具栏1
+    span(slot="toolbar") 工具栏2
+    p 列
+    Button(@click.stop="submit") 搜索

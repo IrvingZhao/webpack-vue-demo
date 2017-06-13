@@ -14,26 +14,18 @@ export default {
         }
     },
     mounted(){
-        console.info("app2-mounted");
-        console.info(this);
     },
     created(){
-        console.info("app2-created");
     },
     activated(){
-        console.info("app2-activated");
     }
     ,
     deactivated(){
-        console.info("app2-deactivated");
     }
     ,
     beforeDestroy(){
-        console.info("app2-beforeDestroy");
-        console.info(this);
     }
     ,
     destroyed(){
-        console.info("app2-destroyed");
     }
 }

@@ -2,8 +2,18 @@ doctype html
 html
     head
         link(type="text/css",rel="stylesheet",href="iview.css")
+        link(type="text/css",rel="stylesheet",href="index.css")
     body
         #app
             el-header
             el-main
+        //#window(v-show="show")
+        //    .mask
+        //    .content(:style="'height:'+height+';width:'+width+';top:'+top+';left:'+left")
+        //        Card(style="width:100%;height:100%;")
+        //            p(slot="title")
+        //                Icon(:type="iconType",v-if="iconType")
+        //                | {{title}}
+        //            div(slot="extra").closeIcon
+        //                Icon(type="close")
         script(type="text/javascript",src="index.js")

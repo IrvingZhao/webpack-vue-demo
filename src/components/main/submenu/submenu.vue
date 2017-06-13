@@ -10,7 +10,8 @@
             </div>
             <transition v-on:enter="enter" v-on:leave="leave" v-on:after-leave="changeStatus" v-bind:css="false">
                 <template v-if="itemMenu.open">
-                    <subMenu :menus="itemMenu.children" :level="level+1"></subMenu>
+                    <subMenu :menus="itemMenu.children" :class="itemMenu.open?'active':''" :level="level+1"
+                             @openPage="openPage"></subMenu>
                 </template>
             </transition>
         </li>
@@ -23,8 +24,10 @@
 
     let submenu = require("./submenu.vue");
     let Velocity = require("velocity-animate");
+    import PageUtil from "../../../pages";
     let currentItemMenu;
     let activeMenu;
+    let menuUnwatch;
     function checkStatus(objects) {
         for (let i = 0; i < objects.length; i++) {
             let item = objects[i];
@@ -34,23 +37,53 @@
             }
         }
     }
+    function menuStatusInit(menus, path) {
+        for (let i = 0; i < menus.length; i++) {
+            let menuItem = menus[i];
+            if (menuItem.children) {
+                menuStatusInit(menuItem.children, path);
+            }
+            if (menuItem.url == path) {
+                menuItem.active = true;
+                activeMenu = menuItem;
+                while (menuItem.parent) {
+                    menuItem.parent.open = true;
+                    menuItem = menuItem.parent;
+                }
+            }
+        }
+    }
+
+    function menuWatcher() {
+        menuUnwatch();
+        let currentPath = PageUtil.getRouter().currentRoute.path;
+        menuStatusInit(this.menus, currentPath);
+    }
+
     export default {
         name: "subMenu",
         props: ["menus", "level"],
+        watch: {},
+        created(){
+            menuUnwatch = this.$watch('menus', menuWatcher);
+        },
         methods: {
             menuItem(itemMenu){
                 if (itemMenu.children) {
                     itemMenu.open = !itemMenu.open;
                     currentItemMenu = itemMenu;
                 }
-                if (activeMenu) {
-                    activeMenu.active = false;
+                if (itemMenu.url) {
+                    if (activeMenu) {
+                        activeMenu.active = false;
+                    }
+                    activeMenu = itemMenu;
+                    itemMenu.active = true;
+                    this.$emit("openPage", itemMenu);
                 }
-                activeMenu = itemMenu;
-                itemMenu.active = true;
-                this.$emit("openPage", itemMenu);
             },
             enter: function (el, done) {
+                el.style.height = 0;
                 Velocity(el, {height: el.scrollHeight}, {
                     complete(){
                         el.style.height = "auto";
@@ -63,6 +96,9 @@
             },
             changeStatus(el){
                 checkStatus(currentItemMenu.children);
+            },
+            openPage(menu){
+                this.$emit("openPage", menu);
             }
         }
     }

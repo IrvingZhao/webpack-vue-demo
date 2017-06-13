@@ -1,13 +1,15 @@
 const path = require("path");// 路径工具
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // .vue 文件中的文本提取插件
 const CopyWebpackPlugin = require("copy-webpack-plugin");//文件拷贝插件
+const CleanWebpackPlugin = require("clean-webpack-plugin");//清理构建文件插件
 
 module.exports = {
     entry: {
         index: [
             "./src/index.js",
             'file-loader?name=index.html!pug-html-loader!./src/index.pug',
-            'file-loader?name=iview.css!less-loader!./src/iview.less'
+            'file-loader?name=iview.css!less-loader!./src/iview.less',
+            'file-loader?name=index.css!less-loader!./src/index.less'
         ]//首页入口
     },
 
@@ -77,7 +79,7 @@ module.exports = {
             Components: path.resolve(__dirname, "src/components/"),
             Pages: path.resolve(__dirname, "src/pages"),
             vue: 'vue/dist/vue.min.js',
-            node_modules:path.resolve(__dirname,"node_modules")
+            node_modules: path.resolve(__dirname, "node_modules")
         },
         // require中 自动追加的后缀名  * 用来 全名时匹配，替代 webpack 1.0 中的 空字符串
         extensions: ["*", ".vue", ".js"]
@@ -89,9 +91,15 @@ module.exports = {
         //文件拷贝
         new CopyWebpackPlugin([
             {from: "src/plugin", to: "plugin"},
-            {from: "src/resources", to: "resources"}
+            {from: "src/resources", to: "resources"},
+            {from:"src/mock",to:"mock"}
             // {from: "src/theme", to: "theme"}
             // {from: "src/index.html", to: "index.html"}
-        ])
+        ]),
+        new CleanWebpackPlugin(["dist"], {
+            root: __dirname,
+            verbose: true,
+            dry: false
+        })
     ]
 };

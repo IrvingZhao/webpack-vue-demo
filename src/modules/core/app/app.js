@@ -8,25 +8,26 @@ export default {
             age:"2q1"
         }
     },
+
+    methods:{
+        submit(){
+            console.info(this);
+            this.$children[0].reload();
+        }
+    },
     mounted(){
-        console.info("app1-mounted");
     },
     created(){
-        console.info("app1-created");
     },
     activated(){
-        console.info("app1-activated");
     }
     ,
     deactivated(){
-        console.info("app1-deactivated");
     }
     ,
     beforeDestroy(){
-        console.info("app1-beforeDestroy");
     }
     ,
     destroyed(){
-        console.info("app1-destroyed");
     }
 }
