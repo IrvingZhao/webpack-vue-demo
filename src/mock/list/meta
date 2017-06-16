@@ -1,0 +1,44 @@
+{
+  "search": [
+    {
+      "name": "name",
+      "label": "标签",
+      "type": "text",
+      "option": {}
+    }
+  ],
+  "toolbar": [
+    {
+      "name": "name",
+      "label": "展示文字",
+      "icon": "图标",
+      "open": "method",
+      "method": "",
+      "url": ""
+    },
+    {
+      "name": "name",
+      "label": "展示文字",
+      "icon": "图标",
+      "open": "url",
+      "method": "",
+      "url": "/core/app"
+    }
+  ],
+  "cells": [
+    {
+      "name": "datakey",
+      "label": "展示文字",
+      "align": "center",
+      "type": "data",
+      "width": "100px"
+    },
+    {
+      "name": "htmlData",
+      "label": "htmlRender",
+      "align": "center",
+      "type": "html",
+      "width": "100px"
+    }
+  ]
+}

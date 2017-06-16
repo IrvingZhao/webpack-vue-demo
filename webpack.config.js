@@ -90,8 +90,6 @@ module.exports = {
         // new TransferWebpackPlugin([{from: "src/plugin", to: "plugin"}, {from: "src/theme", to: "theme"}]),
         //文件拷贝
         new CopyWebpackPlugin([
-            {from: "src/plugin", to: "plugin"},
-            {from: "src/resources", to: "resources"},
             {from:"src/mock",to:"mock"}
             // {from: "src/theme", to: "theme"}
             // {from: "src/index.html", to: "index.html"}

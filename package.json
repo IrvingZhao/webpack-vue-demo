@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
-    "iview": "^2.0.0-rc.14",
+    "iview": "^2.0.0-rc.17",
     "jquery": "^3.2.1",
     "velocity-animate": "^1.5.0",
     "vue": "^2.3.3",

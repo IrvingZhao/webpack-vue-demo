@@ -1,0 +1,13 @@
+div
+    slot(name="form")
+        .dib-con
+            .dib.formItem.dib-con(v-for="formItem in form")
+                .label.dib {{formItem.label}}
+                .content.dib
+    Table(:columns="fields",:data="data",height="200",stripe="true")
+    ////slot(name="form")
+    //p primary-{{primary}}
+    //p fields-{{fields}}
+    //p selected-{{selected}}
+    //p dataUrl-{{dataUrl}}
+    //p data - {{data}}

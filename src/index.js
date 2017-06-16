@@ -3,29 +3,40 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import PageUtils from "./pages";
 import IView from "iview";
-const DataGrid = require("./components/datagrid/datagrid.vue");
 
 import VueResource from "vue-resource";
 
+import Plugin from "./plugin/index"
+// import jQuery from "jquery";
+// // import Bootstrap from "bootstrap";
+// console.info(jQuery)
+
 Vue.use(VueRouter);
 Vue.use(IView);
+Vue.use(Plugin);
 
 Vue.use(VueResource);
-
-Vue.component("data-grid", DataGrid);
 
 
 let header = r => require.ensure([], () => r(require('./components/header/header.vue')), "header");
 let main = r => require.ensure([], () => r(require('./components/main/main.vue')), "main");
+let app=r => require.ensure([], () => r(require('./modules/core/app/app.vue')), 'core/app')
 let router = PageUtils.getRouter();
+let components={
+    "el-header": header,
+    "el-main": main
+};
 let mainPage = new Vue({
     el: "#app",
     router: router,
-    components: {
-        "el-header": header,
-        "el-main": main
-    }
+    components: components
 });
+// let mainPage=new Vue({
+//     el:"#app",
+//     components:{
+//         app:app
+//     }
+// });
 // let windowApp = new Vue({
 //     el: "#window",
 //     data: {
