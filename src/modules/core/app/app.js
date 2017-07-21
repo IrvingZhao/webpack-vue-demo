@@ -29,9 +29,19 @@ export default {
 
     methods: {
         buttonclick(){
-            this.$Window.openSearchGrid({
-                title:"请选择。。。"
+            this.$Window.open({
+                title: "标题",
+                render: function (createelement) {
+                    return createelement("div");
+                },
+                ok(){
+                    console.info("app ok");
+                    return false;
+                }
             });
+            // this.$Window.openSearchGrid({
+            //     title:"请选择。。。"
+            // });
             // searchGrid((grid)=>{
             //     return grid;
             // }).then((grid)=>{
